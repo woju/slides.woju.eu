@@ -1,0 +1,13 @@
+body {
+    font-family: 'Source Sans Pro';
+}
+
+th {
+    border-bottom: 1px solid #000;
+}
+
+td {
+    padding: 0 1em;
+}
+
+/* vim: set ts=4 sts=4 sw=4 et : */

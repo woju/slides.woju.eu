@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/css/ctrl.css">
+        <link rel="stylesheet" href="/fonts/iosevka.css">
+        <script type="text/javascript" src="/js/ctrl.js"></script>
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    </head>
+    <body>
+        <div class="ctrl">
+            <a data-method="prev"><span>&lt;-</span></a>
+            <a data-method="next"><span>--&gt;</span></a>
+            <a data-method="togglePause"><span>---</span></a>
+            <a data-exec="first"><span>&#x219e;</span></a>
+            <a data-method="up"><span>&uarr;</span></a>
+            <a data-exec="last"><span>&#x21a0;</span></a>
+            <a data-method="left"><span>&larr;</span></a>
+            <a data-method="down"><span>&darr;</span></a>
+            <a data-method="right"><span>&rarr;</span></a>
+        </div>
+
+        <script type="text/javascript">
+            {% import 'macros/websocket' as websocket %}
+            ctrl(new WebSocket('{{ websocket.uri(this.parent) }}'));
+        </script>
+    </body>
+</html>
+
+{# vim: set fdm=marker ft=jinja tw=80 ts=4 sts=4 sw=4 et : #}

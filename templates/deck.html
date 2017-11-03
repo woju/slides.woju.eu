@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="/lib/js/head.min.js"></script>
+        <script type="text/javascript" src="/js/reveal.js"></script>
+        <script type="text/javascript" src="/js/ctrl.js"></script>
+        <link rel="stylesheet" href="/css/reveal.css">
+        <link rel="stylesheet" href="/css/theme/white.css">
+        <link rel="stylesheet" href="/fonts/source-sans-pro.css">
+        <link rel="stylesheet" href="/fonts/iosevka.css">
+        <link rel="stylesheet" href="/fonts/ostrich-sans/ostrich-sans.css">
+        <style type="text/css">
+            *, body {
+                font-family: 'Source Sans Pro';
+            }
+
+            .reveal h1, .reveal h2, .reveal h3,
+            .reveal h4, .reveal h5, .reveal h6 {
+                text-transform: none;
+            }
+
+            .reveal h1 {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+
+            .reveal h2 {
+                font-size: 1.2em;
+                font-weight: 600;
+            }
+
+            .reveal pre {
+                font-family: 'Iosevka Type';
+                font-size: 0.8em;
+                box-shadow: none;
+            }
+
+            .reveal code {
+                font-family: 'Iosevka Type';
+                font-size: 0.9em;
+                background: #eee;
+                padding: 0 0.2em;
+            }
+
+            .reveal .qmsk {
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                width: 100vw;
+                text-align: center;
+                font-size: 0.7em;
+                font-weight: 600;
+                color: #aaa;
+            }
+            .reveal .qmsk code {
+                background: none;
+            }
+        </style>
+
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    </head>
+    <body>
+        <div class="reveal">
+            {% block reveal %}{{ this.reveal }}{% endblock %}
+
+            <div class="slides">
+
+                {% block slides %}
+                    {{ this.body }}
+                {% endblock %}
+
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            Reveal.initialize({
+                controls: false,
+                transition: 'fade',
+            });
+
+            {% import 'macros/websocket' as websocket -%}
+
+            {%- if this._slug == 'leader' %}
+            const socket = new WebSocket('{{ websocket.uri(this.parent) }}');
+            leader(socket);
+            {%- else %}
+            const socket = new WebSocket('{{ websocket.uri(this) }}');
+            {%- endif %}
+            follower(socket);
+        </script>
+    </body>
+</html>
+
+{# vim: set fdm=marker ft=jinja tw=80 ts=4 sts=4 sw=4 et : #}

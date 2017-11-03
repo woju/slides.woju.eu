@@ -1,0 +1,5 @@
+{% macro uri(record) -%}
+    wss:{{ config.base_url.split(':', 1)[1] }}ws/{{ record._slug }}
+{%- endmacro %}
+
+{# vim: set ft=jinja ts=4 sts=4 sw=4 et : #}

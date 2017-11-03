@@ -1,0 +1,9 @@
+[submodule "reveal.js"]
+	path = reveal.js
+	url = https://github.com/hakimel/reveal.js
+[submodule "thirdparty/reveal.js"]
+	path = thirdparty/reveal.js
+	url = https://github.com/hakimel/reveal.js
+[submodule "thirdparty/ostrich-sans"]
+	path = thirdparty/ostrich-sans
+	url = https://github.com/theleagueof/ostrich-sans

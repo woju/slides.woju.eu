@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {{ super() }}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Tytuł</th>
+                <th>Miejsce</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for child in this.children %}
+                {% if child._model == 'deck' %}
+                    <tr>
+                        <td>{{ child.date.strftime('%d.%m.%Y') }}</td>
+                        <td><a href="{{ child | url }}">{{ child.title }}</a></td>
+                        <td>{{ child.place }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{# vim: set fdm=marker ft=jinja tw=80 ts=4 sts=4 sw=4 et : #}

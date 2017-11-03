@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/fonts/source-sans-pro.css">
+        <link rel="stylesheet" href="/fonts/iosevka.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        {% block body %}
+            <h1>{{ this.title }}</h1>
+            {{ this.body }}
+        {% endblock %}
+    </body>
+</html>
+
+{# vim: set fdm=marker ft=jinja tw=80 ts=4 sts=4 sw=4 et : #}

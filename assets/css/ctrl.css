@@ -1,0 +1,61 @@
+*, body {
+    font-family: 'Iosevka Type';
+}
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.ctrl {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 2fr repeat(3, 1fr);
+    grid-gap: 2vw;
+}
+
+.ctrl a {
+    background: #666;
+    color: #fff;
+    text-align: center;
+    font-size: 7vh;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.ctrl a[data-method=prev] {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    background: #f00;
+    font-size: 15vh;
+}
+.ctrl a[data-method=next] {
+    grid-row: 1 / 2;
+    grid-column: 2 / 4;
+    background: #0a0;
+    font-size: 15vh;
+}
+
+.ctrl a[data-method=togglePause] {
+    grid-column: 1 / 4;
+    background: #000;
+}
+
+.ctrl a[data-exec=first] {
+    background: #00a;
+}
+.ctrl a[data-method=up] {
+}
+.ctrl a[data-exec=last] {
+    background: #00a;
+}
+
+.ctrl a[data-method=left] {
+}
+.ctrl a[data-method=down] {
+}
+.ctrl a[data-method=right] {
+}

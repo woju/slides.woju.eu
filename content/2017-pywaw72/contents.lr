@@ -1,0 +1,223 @@
+title: Python: bezpieczne programowanie
+---
+_discoverable: no
+---
+place: <a href="http://pywaw.org/">PyWaw 72</a>
+---
+date: 2017-12-31
+---
+reveal:
+
+<div class="qmsk">
+    <span style="font-family: Ostrich Sans; font-weight: 900">
+        Qubes OS</span> Master Signing Key:
+    <code style="margin-left: 2em">
+        427F 11FD 0FAA 4B08 0123 F01C DDFA 1A3E 3687 9494
+    </code>
+</div>
+---
+body:
+
+<section><h1>Python:<br/> bezpieczne programowanie</h1><!-- {{{1 -->
+    <h2 style="margin-top: 2em">Wojtek Porczyk</h2>
+
+    <p>woju@invisiblethingslab.com</p>
+    <p><a href="https://github.com/woju">https://github.com/woju</a></p>
+</section>
+
+<section><h1>Qubes OS</h1><!-- {{{1 -->
+    <ul>
+        <li><i>“a reasonably secure [desktop] operating system”</i>
+        <li><i>security by compartmentalisation</i>
+        <ul>
+            <li>izolacja (VM: Xen, VT-x/AMD-v, IOMMU, ...)
+            <li>bezpieczna integracja (vchan, qrexec)
+        </ul>
+        <li>C, Python, sh i co dystrybucja dała
+        <li>Python: libvirt, lxml, asyncio
+    </ul>
+</section>
+
+<section><h1>ogólne zalety Pythona</h1><!-- {{{1 -->
+    <ul>
+        <li>czytelność (!)
+        <li>kultura
+        <ul><i>
+            <li>readability counts
+            <li>explicit is better than implicit
+            <li>...
+            <li>we're all adults here
+        </i></ul>
+    </ul>
+</section>
+
+<section><h1>rzeczy w Pythonie</h1><!-- {{{1 -->
+    <ul>
+        <li><code>untrusted_</code> + <code>del</code> (+ <code>*, kwdonly=</code>)
+        <li>przewidywalny język
+        <li>szeroki wybór bibliotek dobrej jakości
+        <li>asyncio
+        <li>pakiety z dystrybucji
+    </ul>
+</section>
+
+<section><h1>skąd się biorą błędy?</h1><!-- {{{1 -->
+    <ul class="fragment">
+        <li>bo programista nie ogarnął
+        <li>pisania i/lub czytania
+        <li>cudzego kodu (*)
+    </ul>
+</section>
+
+<section><h1>untrusted_</h1><!-- {{{1 -->
+<pre style="margin-bottom: 0;">
+def receive(fd):
+    <b>untrusted_</b>data = fd.read(DATA_SIZE)
+</pre>
+<pre class="fragment" style="margin-top: 0;">
+    parse(<b>untrusted_data=</b>untrusted_data)
+</pre>
+
+<pre class="fragment">
+def parse(<span style="color: #aaa;">*, </span><b>untrusted_data</b>):
+    <b>assert</b> len(untrusted_data) == DATA_SIZE
+    <b>assert</b> untrusted_data[0] == EXPECTED_MAGIC
+    # ...
+</pre>
+
+<pre class="fragment">
+    <b>data = untrusted_data</b>
+    <b>del untrusted_data</b>
+</pre>
+
+<pre class="fragment">
+    do_something_with(<b>data</b>)
+</pre>
+</section>
+
+
+<section><h1>przewidywalny runtime</h1><!-- {{{1 -->
+    <ul>
+        <li>w C <em>programista</em> jest przewidywalny,<br/>
+            więc <em>kompilator</em> jest nieprzewidywalny
+        <li>smutny przykład: <a href="https://xenbits.xen.org/xsa/advisory-155.html">XSA-155</a>
+            / <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8550">CVE-2015-8550</a>
+            / <a href="https://github.com/QubesOS/qubes-secpack/blob/master/QSBs/qsb-023-2015.txt">QSB-23</a>
+    </ul>
+    </section><!-- }}}1 -->
+
+<section>
+    <section><h1>XSA-155 (w dużym uproszczeniu)</h1><!-- {{{1 -->
+<pre>
+struct S { int index; int data[DATA_SIZE]; };
+</pre>
+
+<pre class="fragment">
+int main(int argc, char *argv[]) {
+    struct S *s; int fd, <b style="color: #0a0">untrusted_index</b>, <b style="color: #0a0">index</b>;
+    fd = open("shm", O_RDWR);
+    s = (struct S *)<b>mmap</b>(NULL, sizeof(struct S),
+            PROT_READ|PROT_WRITE, <b>MAP_SHARED</b>, fd, 0);
+    <span style="color: #888">/* s-&gt;data[s-&gt;index] jest błędem! */</span>
+</pre>
+
+<pre class="fragment">
+    <b style="color: #0a0">untrusted_index</b> = <b style="color: #0a0">s-&gt;index</b>;
+    if (untrusted_index &lt; 0 || untrusted_index &gt;= DATA_SIZE)
+        goto error;
+    <b style="color: #0a0">index</b> = <b style="color: #0a0">untrusted_index</b>;
+</pre>
+
+<pre class="fragment">
+    s-&gt;data[<b style="color: #0a0">index</b>] = 5; <span style="color: #888">/* XSA-155/CVE-2015-8550(?) */</span>
+</pre>
+    </section>
+
+    <section data-transition="slide"><h1>XSA-155/CVE-2015-8550 cd.</h1><!-- {{{1 -->
+        <ul>
+            <li>a co, jeśli kompilator chciał zaoszczędzić rejestry?
+            <li>a skąd mamy wiedzieć, jak było tym razem?
+            <li>choćbysmy się nie wiem ile wpatrywali w&nbsp;źródło,<br/>
+                tam błędu nie znajdziemy
+        </ul>
+    </section><!-- }}}1 -->
+</section>
+
+<section><h1>przewidywalny runtime: Python!</h1><!-- {{{1 -->
+    <ul>
+        <li>no to w Pythonie takich cyrków nie ma
+        <li>język daje mnóstwo możliwości, więc programista jest nieprzewidywalny
+        <li>głupiej zmiennej nie można wyoptymalizować<br/>
+            <span class="fragment">
+                <code>locals()</code>/<code>globals()</code>/<code>inspect.currentframe()</code>,
+                <code>function.__closure__</code>, <code>metaclass.__prepare__()</code>, ...
+            </span>
+        <li class="fragment">inny przykład takiego myślenia: <a href="http://web.archive.org/web/20100715204616/http://lucumr.pocoo.org:80/2008/9/16/why-jinja-is-not-django-and-why-django-should-have-a-look-at-it">jinja2 vs DTL</a>
+        <li class="fragment">czasem jednak to się odbija czkawką: <code>str.format()</code>
+    </ul>
+</section>
+
+<section><h1>inne dobre rzeczy</h1><!-- {{{1 -->
+    <ul>
+        <li>asyncio vs threads &mdash; współbieżność kooperacyjna
+        <li>elementy programowania deklaratywnego
+        <ul>
+            <li>dekoratory
+            <li>metaklasy
+        </ul>
+    </ul>
+</section>
+
+<section><h1>rzeczy naokoło Pythona</h1><!-- {{{1 -->
+    <ul>
+        <li>dobra biblioteka &#8658; minimum zależności
+        <ul>
+            <li>minimalizujemy TCB (ludzi, organizacje, sprzęt),
+                którym z&nbsp;konieczności musimy zaufać
+            <li>patrz: kultura
+            <li>cf. npm:
+                <code>kik</code>/<code>left-pad</code>
+                [<a href="http://www.haneycodes.net/npm-left-pad-have-we-forgotten-how-to-program/">ref</a>],
+                <code>is-positive-integer</code>
+                [<a href="https://news.ycombinator.com/item?id=11348942">ref</a>]
+        </ul>
+        <li>pakiety z dystrybucji
+    </ul>
+</section>
+
+<section><h1>nierozwiązane problemy</h1><!-- {{{1 -->
+    <ul>
+        <li>instalacja pakietów (nie tylko Python)<br/>
+            <span style="font-size: 0.8em">[<a
+            href="https://caremad.io/posts/2013/07/packaging-signing-not-holy-grail/">Donald Stufft of (nie)podpisywaniu na PyPI</a>]</span>
+        <li>w ogóle podpisywanie kodu
+        <li>analiza statyczna
+        <li>język jest bezpieczny
+        <ul>
+            <li class="fragment">ale czy CPython jest bezpieczny?
+        </ul>
+        <li>ludzie z backgroundem naokoło security piszą w C
+        <ul>
+            <li class="fragment">w składni Pythona :(
+        </ul>
+    </ul>
+</section>
+
+<section>
+    <section><h1 style="font-size: 5em">?</h1><!-- {{{1 -->
+    </section>
+
+    <section data-transition="slide"><h1>TCB</h1><!-- {{{1 -->
+        “Trusted Computing Base” &rarr; 
+    </section>
+
+    <section data-transition="slide"><h1>Threat model</h1><!-- {{{1 -->
+    </section><!-- }}}1 -->
+</section>
+
+<section><!-- {{{1 fin -->
+    <p><a href="https://www.qubes-os.org/">https://www.qubes-os.org/</a>
+    <p>qubes-devel<span style="color: #aaa">+subscribe</span>@googlegroups.com
+</section>
+
+<!-- }}}1 vim: set ft=html fdm=marker ts=4 sts=4 sw=4 et : -->

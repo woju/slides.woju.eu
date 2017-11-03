@@ -1,0 +1,92 @@
+/*
+https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
+
+100 thin hairline
+200 extralight
+300 light
+400 regular normal
+500 medium
+600 semibold demibold
+700 bold
+800 extrabold ultrabold
+900 black heavy
+
+*/
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-Regular.otf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-It.otf');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-ExtraLight.otf');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-ExtraLightIt.otf');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-Light.otf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-LightIt.otf');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-Semibold.otf');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-SemiboldIt.otf');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-Bold.otf');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-BoldIt.otf');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-Black.otf');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('source-sans-pro/SourceSansPro-BlackIt.otf');
+    font-weight: 900;
+    font-style: italic;
+}
