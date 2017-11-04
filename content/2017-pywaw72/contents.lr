@@ -207,6 +207,14 @@ int main(int argc, char *argv[]) {
     <section><h1 style="font-size: 5em">?</h1><!-- {{{1 -->
     </section>
 
+    <section data-transition="slide"><!-- {{{1 -->
+        <img src="pdfconverter.svg" style="border: none; box-shadow: none;" />
+    </section>
+
+    <section data-transition="fade"><!-- {{{1 -->
+        <img src="pdfconverter-exploited.svg" style="border: none; box-shadow: none;" />
+    </section>
+
     <section data-transition="slide"><h1>TCB</h1><!-- {{{1 -->
         “Trusted Computing Base” &rarr; 
     </section>
