@@ -1,0 +1,6 @@
+{% macro uri(record) -%}
+    https://github.com/woju/slides.woju.eu/blob/master/content
+    {{- record._path -}}/contents.lr
+{%- endmacro %}
+
+{# vim: set ft=jinja ts=4 sts=4 sw=4 et : #}

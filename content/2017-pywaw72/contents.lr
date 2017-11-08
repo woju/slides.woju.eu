@@ -18,10 +18,66 @@ reveal:
 ---
 body:
 
-<section><h1>Python:<br/> bezpieczne programowanie</h1><!-- {{{1 -->
-    <h2 style="margin-top: 2em">Wojtek Porczyk</h2>
+<style>
+    *, body {
+        font-family: 'Source Sans Pro';
+    }
 
-    <p>woju@invisiblethingslab.com</p>
+    .reveal h1, .reveal h2, .reveal h3,
+    .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none;
+    }
+
+    .reveal h1 {
+        font-family: 'Cyrulik Sharp';
+        font-weight: normal;
+        font-size: 1.5em;
+    }
+
+    .reveal h2 {
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    .reveal pre {
+        font-family: 'Iosevka Type';
+        font-size: 0.8em;
+        box-shadow: none;
+    }
+
+    .reveal code {
+        font-family: 'Iosevka Type';
+        font-size: 0.9em;
+        background: #eee;
+        padding: 0 0.2em;
+    }
+
+    .title, .title h1, .title h2 {
+        color: #000;
+        text-shadow: 0 0 10px #fff;
+    }
+
+    .title h1 {
+        font-size: 2em;
+    }
+
+    .title a {
+        color: #222;
+        text-shadow: 0 0 4px #fff;
+    }
+
+    .title a:hover {
+        color: #222;
+        text-shadow: 0 0 4px #fff;
+        text-decoration: underline;
+    }
+</style>
+
+<section data-background-image="background.jpg" class="title"><!-- {{{1 -->
+    <h1>Python:<br/> bezpieczne programowanie</h1>
+    <h2 style="margin-top: 1em;">Wojtek Porczyk</h2>
+
+    <p><a href="mailto:woju@invisiblethingslab.com">woju@invisiblethingslab.com</a></p>
     <p><a href="https://github.com/woju">https://github.com/woju</a></p>
 </section>
 
@@ -185,6 +241,16 @@ int main(int argc, char *argv[]) {
     </ul>
 </section>
 
+<section><h1>czy to wszystko?</h1><!-- {{{1 -->
+    <ul>
+        <li class="fragment">tak, tyle wystarczy, ponieważ...
+        <li class="fragment">resztę załatwia za nas architektura
+    </ul>
+    <p class="fragment">
+        Twoja architektura jest przemyślana, prawda? ;)
+    </p>
+</section>
+
 <section><h1>nierozwiązane problemy</h1><!-- {{{1 -->
     <ul>
         <li>instalacja pakietów (nie tylko Python)<br/>
@@ -207,19 +273,28 @@ int main(int argc, char *argv[]) {
     <section><h1 style="font-size: 5em">?</h1><!-- {{{1 -->
     </section>
 
-    <section data-transition="slide"><!-- {{{1 -->
-        <img src="pdfconverter.svg" style="border: none; box-shadow: none;" />
+    <!-- {{{1 --><section data-background-image="qubes-components.png"
+        data-background-size="contain"></section>
+
+    <!-- {{{1 --><section data-background-image="pdfconverter.svg"
+        data-background-size="contain"></section>
+
+    <!-- {{{1 --><section data-background-image="pdfconverter-exploited.svg"
+        data-background-size="contain"></section>
+
+    <!-- {{{1 --><section data-background-image="stag.png"
+        data-background-size="contain"></section>
+
+    <section><h1>TCB</h1><!-- {{{1 -->
+        <p>“Trusted Computing Base” &rarr; elementy systemu krytyczne pod
+        względem bezpieczeństwa, tzn. jeśli dowolny z&nbsp;nich zawiedzie,
+        przegrywamy.</p>
+
+        <p>Ważne jest, kto dobiera TCB. Kto ma pilota, ten ma władzę.</p>
     </section>
 
-    <section data-transition="fade"><!-- {{{1 -->
-        <img src="pdfconverter-exploited.svg" style="border: none; box-shadow: none;" />
-    </section>
-
-    <section data-transition="slide"><h1>TCB</h1><!-- {{{1 -->
-        “Trusted Computing Base” &rarr; 
-    </section>
-
-    <section data-transition="slide"><h1>Threat model</h1><!-- {{{1 -->
+    <section><h1>Threat model</h1><!-- {{{1 -->
+        <p>(a jaki jest Twój?)</p>
     </section><!-- }}}1 -->
 </section>
 
@@ -228,4 +303,4 @@ int main(int argc, char *argv[]) {
     <p>qubes-devel<span style="color: #aaa">+subscribe</span>@googlegroups.com
 </section>
 
-<!-- }}}1 vim: set ft=html fdm=marker ts=4 sts=4 sw=4 et : -->
+<!-- }}}1 vim: set ft=html fdm=marker tw=80 ts=4 sts=4 sw=4 et : -->
