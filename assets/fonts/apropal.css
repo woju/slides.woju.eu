@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Apropal';
+    src:
+    	url('Apropal-Bold/Apropal-Bold.otf') format('otf'),
+    	url('Apropal-Bold/Apropal-Bold.ttf') format('truetype'),
+    	url('Apropal-Bold/Apropal-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}

@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Cyrulik Sharp';
+    src:
+    	url('Cyrulik-Sharp/Cyrulik-Sharp.otf') format('otf'),
+    	url('Cyrulik-Sharp/Cyrulik-Sharp.ttf') format('truetype'),
+    	url('Cyrulik-Sharp/Cyrulik-Sharp.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cyrulik Sharp';
+    src:
+    	url('Cyrulik-SharpBold/Cyrulik-SharpBold.otf') format('otf'),
+    	url('Cyrulik-SharpBold/Cyrulik-SharpBold.ttf') format('truetype'),
+    	url('Cyrulik-SharpBold/Cyrulik-SharpBold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cyrulik Rounded';
+    src:
+    	url('Cyrulik-Rounded/Cyrulik-Rounded.otf') format('otf'),
+    	url('Cyrulik-Rounded/Cyrulik-Rounded.ttf') format('truetype'),
+    	url('Cyrulik-Rounded/Cyrulik-Rounded.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cyrulik Stencil';
+    src:
+    	url('Cyrulik-Stencil/Cyrulik-Stencil.otf') format('otf'),
+    	url('Cyrulik-Stencil/Cyrulik-Stencil.ttf') format('truetype'),
+    	url('Cyrulik-Stencil/Cyrulik-Stencil.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}

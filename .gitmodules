@@ -7,3 +7,12 @@
 [submodule "thirdparty/ostrich-sans"]
 	path = thirdparty/ostrich-sans
 	url = https://github.com/theleagueof/ostrich-sans
+[submodule "thirdparty/qubes-diagrams"]
+	path = thirdparty/qubes-diagrams
+	url = https://github.com/rootkovska/qubes-diagrams
+[submodule "thirdparty/apropal"]
+	path = thirdparty/apropal
+	url = https://github.com/warszawskie-kroje/apropal
+[submodule "thirdparty/cyrulik"]
+	path = thirdparty/cyrulik
+	url = https://github.com/warszawskie-kroje/cyrulik
