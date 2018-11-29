@@ -18,7 +18,7 @@ reveal:
 ---
 body:
 
-<style>
+<style>/* {{{1 */
     *, body {
         font-family: 'Source Sans Pro';
     }
@@ -160,7 +160,7 @@ def parse(<span style="color: #aaa;">*, </span><b>untrusted_data</b>):
             / <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8550">CVE-2015-8550</a>
             / <a href="https://github.com/QubesOS/qubes-secpack/blob/master/QSBs/qsb-023-2015.txt">QSB-23</a>
     </ul>
-    </section><!-- }}}1 -->
+</section><!-- }}}1 -->
 
 <section>
     <section><h1>XSA-155 (w dużym uproszczeniu)</h1><!-- {{{1 -->
@@ -209,7 +209,9 @@ int main(int argc, char *argv[]) {
                 <code>function.__closure__</code>, <code>metaclass.__prepare__()</code>, ...
             </span>
         <li class="fragment">inny przykład takiego myślenia: <a href="http://web.archive.org/web/20100715204616/http://lucumr.pocoo.org:80/2008/9/16/why-jinja-is-not-django-and-why-django-should-have-a-look-at-it">jinja2 vs DTL</a>
-        <li class="fragment">czasem jednak to się odbija czkawką: <code>str.format()</code>
+        <li class="fragment">czasem jednak to się odbija czkawką:
+            <code>str.format()</code>
+            [<a href="http://lucumr.pocoo.org/2016/12/29/careful-with-str-format/">ref</a>]
     </ul>
 </section>
 
@@ -222,7 +224,7 @@ int main(int argc, char *argv[]) {
             <li>metaklasy
         </ul>
     </ul>
-</section>
+</section><!-- }}}1 -->
 
 <section>
     <section><h1>rzeczy naokoło Pythona</h1><!-- {{{1 -->
@@ -270,7 +272,7 @@ int main(int argc, char *argv[]) {
         <li class="fragment">
             ludziom z backgroundem w .js brakuje wyobraźni
     </ul>
-</section>
+</section><!-- }}}1 -->
 
 <section>
     <section><h1 style="font-size: 5em">?</h1><!-- {{{1 -->
