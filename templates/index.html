@@ -20,7 +20,11 @@
                         <td>{{ child.date.strftime('%d.%m.%Y') }}</td>
                         <td><a href="{{ child | url }}">{{ child.title }}</a></td>
                         <td>{{ child.place }}</td>
-                        <td>[<a href="{{ github.uri(child) }}">src</a>]</td>
+                        <td>[<a href="{{ github.uri(child) }}">src</a>]
+                            {% if child.video -%}
+                                [<a href="{{ child.video }}">video</a>]
+                            {%- endif %}
+                        </td>
                     </tr>
                 {% endif %}
             {% endfor %}
