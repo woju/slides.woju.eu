@@ -1,10 +1,8 @@
 title: Python: bezpieczne programowanie
 ---
-_discoverable: no
+place: <a href="http://pywaw.org/">PyWaw 76</a>
 ---
-place: <a href="http://pywaw.org/">PyWaw 72</a>
----
-date: 2017-12-31
+date: 2018-05-28
 ---
 reveal:
 
@@ -224,21 +222,26 @@ int main(int argc, char *argv[]) {
     </ul>
 </section>
 
-<section><h1>rzeczy naokoło Pythona</h1><!-- {{{1 -->
-    <ul>
-        <li>dobra biblioteka &#8658; minimum zależności
+<section>
+    <section><h1>rzeczy naokoło Pythona</h1><!-- {{{1 -->
         <ul>
-            <li>minimalizujemy TCB (ludzi, organizacje, sprzęt),
-                którym z&nbsp;konieczności musimy zaufać
-            <li>patrz: kultura
-            <li>cf. npm:
-                <code>kik</code>/<code>left-pad</code>
-                [<a href="http://www.haneycodes.net/npm-left-pad-have-we-forgotten-how-to-program/">ref</a>],
-                <code>is-positive-integer</code>
-                [<a href="https://news.ycombinator.com/item?id=11348942">ref</a>]
+            <li>dobra biblioteka &#8658; minimum zależności
+            <ul>
+                <li>minimalizujemy TCB (ludzi, organizacje, sprzęt),
+                    którym z&nbsp;konieczności musimy zaufać
+                <li>patrz: kultura
+                <li>cf. npm:
+                    <code>kik</code>/<code>left-pad</code>
+                    [<a href="http://www.haneycodes.net/npm-left-pad-have-we-forgotten-how-to-program/">ref</a>],
+                    <code>is-positive-integer</code>
+                    [<a href="https://news.ycombinator.com/item?id=11348942">ref</a>]
+            </ul>
+            <li>pakiety z dystrybucji
         </ul>
-        <li>pakiety z dystrybucji
-    </ul>
+    </section>
+
+    <!-- {{{1 --><section data-background-image="python_environment.png"
+        data-background-size="contain"></section><!-- }}}1 -->
 </section>
 
 <section><h1>czy to wszystko?</h1><!-- {{{1 -->
@@ -258,14 +261,12 @@ int main(int argc, char *argv[]) {
             href="https://caremad.io/posts/2013/07/packaging-signing-not-holy-grail/">Donald Stufft of (nie)podpisywaniu na PyPI</a>]</span>
         <li>w ogóle podpisywanie kodu
         <li>analiza statyczna
-        <li>język jest bezpieczny
-        <ul>
-            <li class="fragment">ale czy CPython jest bezpieczny?
-        </ul>
-        <li>ludzie z backgroundem naokoło security piszą w C
-        <ul>
-            <li class="fragment">w składni Pythona :(
-        </ul>
+        <li class="fragment">
+            język jest bezpieczny, ale czy CPython jest bezpieczny?
+        <li class="fragment">
+            ludzie z backgroundem naokoło security piszą w C (w składni Pythona)
+        <li class="fragment">
+            ludziom z backgroundem w .js brakuje wyobraźni
     </ul>
 </section>
 
